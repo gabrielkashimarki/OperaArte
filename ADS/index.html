@@ -358,6 +358,42 @@
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="auth-gate" style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f4f4f4;">
+  <div style="background:#fff;padding:48px;border-radius:4px;border:1px solid #ccc;max-width:400px;width:90%;text-align:center;">
+    <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#013167;margin-bottom:24px;">Opera Arte · BDR Digital</div>
+    <p style="font-size:14px;color:#888;margin-bottom:20px;">Documento protegido. Insira a senha de acesso.</p>
+    <input id="pw-input" type="password" placeholder="Senha" style="width:100%;padding:12px 16px;border:1px solid #ccc;border-radius:2px;font-family:'Poppins',sans-serif;font-size:14px;margin-bottom:12px;outline:none;" onkeydown="if(event.key==='Enter')document.getElementById('pw-btn').click()">
+    <button id="pw-btn" onclick="checkPw()" style="width:100%;padding:12px;background:#013167;color:#fff;border:none;border-radius:2px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">Acessar</button>
+    <div id="pw-error" style="color:#C30045;font-size:12px;margin-top:12px;display:none;">Senha incorreta.</div>
+  </div>
+</div>
+<div id="doc-content" style="display:none;">
+<!-- END PASSWORD GATE -->
+
+<script>
+function checkPw(){
+  var h='08f444ef0a225de602b531c98fecab02784e3b276c48475c16ac77dff2908c02';
+  var input=document.getElementById('pw-input').value;
+  crypto.subtle.digest('SHA-256',new TextEncoder().encode(input)).then(function(buf){
+    var hash=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+    if(hash===h){
+      document.getElementById('auth-gate').style.display='none';
+      document.getElementById('doc-content').style.display='block';
+      sessionStorage.setItem('oa-auth','1');
+    } else {
+      document.getElementById('pw-error').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  });
+}
+if(sessionStorage.getItem('oa-auth')==='1'){
+  document.getElementById('auth-gate').style.display='none';
+  document.getElementById('doc-content').style.display='block';
+}
+</script>
+
 <header>
   <div class="header-title">Opera Arte · Estratégia de Tráfego</div>
   <div class="header-meta">
@@ -825,5 +861,6 @@
   </div>
 </footer>
 
+</div><!-- close doc-content -->
 </body>
 </html>
