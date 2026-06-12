@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opera Arte &middot; Relat&oacute;rio de Tr&aacute;fego &middot; Dia dos Namorados</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-escuro: #013167;
+    --vermelho: #C30045;
+    --azul-medio: #1D81B3;
+    --branco: #fff;
+    --preto: #000;
+    --cinza-linha: #ccc;
+    --cinza-medio: #888;
+    --cinza-fundo: #f4f4f4;
+    --verde: #1e7e4d;
+    --grad-start: #013168;
+    --grad-end: #469BC9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', 'Open Sans', sans-serif;
+    background: var(--branco);
+    color: var(--preto);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--cinza-linha);
+  }
+  .header-title {
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--azul-escuro);
+  }
+  .header-meta { display: flex; gap: 48px; font-size: 11px; color: var(--cinza-medio); }
+  .header-meta strong {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--azul-medio);
+    margin-bottom: 2px;
+  }
+  .intro { padding: 64px 48px 48px; max-width: 860px; }
+  .intro-eyebrow {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--azul-medio); margin-bottom: 16px; font-weight: 600;
+  }
+  .intro h1 {
+    font-size: 3.6rem; font-weight: 800; line-height: 0.98;
+    color: var(--azul-escuro); margin-bottom: 24px; letter-spacing: -2px;
+  }
+  .intro h1 .accent { color: var(--vermelho); }
+  .intro-sub { font-size: 15px; color: #444; line-height: 1.7; max-width: 640px; }
+  .grad-bar-full { height: 4px; background: linear-gradient(to right, var(--grad-start), var(--grad-end)); }
+
+  .kpis {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--cinza-linha);
+  }
+  .kpi { padding: 36px 32px; border-right: 1px solid var(--cinza-linha); }
+  .kpi:last-child { border-right: none; }
+  .kpi-num { font-size: 3rem; font-weight: 800; color: var(--azul-escuro); line-height: 1; letter-spacing: -1px; }
+  .kpi-num.red { color: var(--vermelho); }
+  .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--cinza-medio); margin-top: 10px; font-weight: 600; }
+
+  .section { border-top: 1px solid var(--cinza-linha); padding: 48px; }
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--azul-medio); font-weight: 600; margin-bottom: 8px;
+  }
+  .section h2 { font-size: 1.8rem; font-weight: 800; color: var(--azul-escuro); letter-spacing: -1px; margin-bottom: 24px; }
+
+  .funil { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  .funil-step { background: var(--cinza-fundo); padding: 16px 22px; border-left: 4px solid var(--azul-medio); }
+  .funil-step.final { border-left-color: var(--vermelho); }
+  .funil-step .n { font-size: 1.6rem; font-weight: 800; color: var(--azul-escuro); line-height: 1; }
+  .funil-step .t { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--cinza-medio); font-weight: 600; }
+  .funil-arrow { color: var(--cinza-linha); font-size: 1.4rem; font-weight: 800; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--azul-medio); font-weight: 700; padding: 12px 14px;
+    border-bottom: 2px solid var(--azul-escuro); white-space: nowrap;
+  }
+  tbody td { padding: 12px 14px; border-bottom: 1px solid #e4e4e4; vertical-align: top; }
+  tbody tr:nth-child(even) { background: #fafafa; }
+  tbody tr.pago { background: #f0f8f3; }
+  td.nome { font-weight: 600; color: var(--azul-escuro); white-space: nowrap; }
+  td.fone { white-space: nowrap; font-family: 'Open Sans', monospace; font-size: 12.5px; }
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 3px; white-space: nowrap;
+  }
+  .badge.pago { background: var(--verde); color: #fff; }
+  .badge.pend { background: #e9e9e9; color: var(--cinza-medio); }
+  .when { display: block; font-size: 11.5px; color: var(--verde); font-weight: 600; margin-top: 4px; }
+
+  .nota { font-size: 12px; color: var(--cinza-medio); line-height: 1.7; max-width: 760px; margin-top: 20px; }
+  footer {
+    display: flex; justify-content: space-between; padding: 24px 48px;
+    border-top: 1px solid var(--cinza-linha); font-size: 11px; color: var(--cinza-medio);
+  }
+  footer .brand { font-weight: 800; letter-spacing: 3px; color: var(--azul-escuro); }
+  @media print {
+    .section, .kpis { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="auth-gate" style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f4f4f4;">
+  <div style="background:#fff;padding:48px;border-radius:4px;border:1px solid #ccc;max-width:400px;width:90%;text-align:center;">
+    <div style="font-family:'Poppins',sans-serif;font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#013167;margin-bottom:24px;">Opera Arte &middot; Smarten.digital</div>
+    <p style="font-size:14px;color:#888;margin-bottom:20px;">Documento protegido. Insira a senha de acesso.</p>
+    <input id="pw-input" type="password" placeholder="Senha" style="width:100%;padding:12px 16px;border:1px solid #ccc;border-radius:2px;font-family:'Poppins',sans-serif;font-size:14px;margin-bottom:12px;outline:none;" onkeydown="if(event.key==='Enter')document.getElementById('pw-btn').click()">
+    <button id="pw-btn" onclick="checkPw()" style="width:100%;padding:12px;background:#013167;color:#fff;border:none;border-radius:2px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">Acessar</button>
+    <div id="pw-error" style="color:#C30045;font-size:12px;margin-top:12px;display:none;">Senha incorreta.</div>
+  </div>
+</div>
+<div id="doc-content" style="display:none;">
+<!-- END PASSWORD GATE -->
+
+<script>
+function checkPw(){
+  var h='08f444ef0a225de602b531c98fecab02784e3b276c48475c16ac77dff2908c02';
+  var input=document.getElementById('pw-input').value;
+  crypto.subtle.digest('SHA-256',new TextEncoder().encode(input)).then(function(buf){
+    var hash=Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+    if(hash===h){
+      document.getElementById('auth-gate').style.display='none';
+      document.getElementById('doc-content').style.display='block';
+      sessionStorage.setItem('oa-auth','1');
+    } else {
+      document.getElementById('pw-error').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  });
+}
+if(sessionStorage.getItem('oa-auth')==='1'){
+  document.getElementById('auth-gate').style.display='none';
+  document.getElementById('doc-content').style.display='block';
+}
+</script>
+
+<header>
+  <div class="header-title">Opera Arte &middot; Smarten.digital</div>
+  <div class="header-meta">
+    <div><strong>Cliente</strong>Opera Arte</div>
+    <div><strong>Campanha</strong>Dia dos Namorados &middot; Google Ads</div>
+    <div><strong>Per&iacute;odo</strong>02/06 &ndash; 12/06/2026</div>
+  </div>
+</header>
+
+<div class="intro">
+  <div class="intro-eyebrow">Relat&oacute;rio de Tr&aacute;fego &middot; 12 de junho de 2026</div>
+  <h1>Google Ads &rarr;<br>Reservas <span class="accent">confirmadas</span></h1>
+  <p class="intro-sub">
+    Rastreamento ponta a ponta da campanha do Dia dos Namorados: do clique no an&uacute;ncio &agrave; landing page
+    <strong>eventosoperadearame.curitiba.br/diadosnamorados</strong>, do bot&atilde;o de WhatsApp &agrave; reserva confirmada no CRM.
+    Cada lead abaixo foi verificado individualmente &mdash; o hor&aacute;rio do clique no site bate com a primeira mensagem
+    enviada no WhatsApp com diferen&ccedil;a de segundos.
+  </p>
+</div>
+
+<div class="grad-bar-full"></div>
+
+<div class="kpis">
+  <div class="kpi"><div class="kpi-num">280</div><div class="kpi-label">Cliques no WhatsApp (site)</div></div>
+  <div class="kpi"><div class="kpi-num">132</div><div class="kpi-label">Conversas iniciadas</div></div>
+  <div class="kpi"><div class="kpi-num red">18</div><div class="kpi-label">Reservas confirmadas</div></div>
+  <div class="kpi"><div class="kpi-num red">10</div><div class="kpi-label">Comprovantes enviados</div></div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Funil da campanha</div>
+  <h2>Do clique &agrave; reserva</h2>
+  <div class="funil">
+    <div class="funil-step"><div class="n">280</div><div class="t">Cliques</div></div>
+    <div class="funil-arrow">&rarr;</div>
+    <div class="funil-step"><div class="n">132</div><div class="t">Conversas (47%)</div></div>
+    <div class="funil-arrow">&rarr;</div>
+    <div class="funil-step"><div class="n">18</div><div class="t">Reservas (14%)</div></div>
+    <div class="funil-arrow">&rarr;</div>
+    <div class="funil-step final"><div class="n">10</div><div class="t">Pagas c/ comprovante</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Leads verificados &middot; Google Ads</div>
+  <h2>18 reservas confirmadas no per&iacute;odo</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Clique no site</th>
+        <th>Reserva confirmada</th>
+        <th>Comprovante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="pago"><td>1</td><td class="nome">Antonio Augusto Pereira</td><td class="fone">+55 47 9977-4656</td><td>05/06</td><td>09/06</td><td><span class="badge pago">Enviado</span><span class="when">05/06 &middot; 19:00</span></td></tr>
+      <tr><td>2</td><td class="nome">(nome n&atilde;o registrado no CRM)</td><td class="fone">+55 31 9355-4095</td><td>05/06</td><td>05/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr><td>3</td><td class="nome">Leandro Garrido de Almeida</td><td class="fone">+55 41 9173-2283</td><td>06/06</td><td>10/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr><td>4</td><td class="nome">Tayna Binow Felix</td><td class="fone">+55 27 9579-4749</td><td>06/06</td><td>09/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr class="pago"><td>5</td><td class="nome">Andre</td><td class="fone">+55 41 8801-2581</td><td>07/06</td><td>07/06</td><td><span class="badge pago">Enviado</span><span class="when">09/06 &middot; 16:37</span></td></tr>
+      <tr><td>6</td><td class="nome">Luiz Henrique</td><td class="fone">+55 41 9161-6126</td><td>08/06</td><td>08/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr class="pago"><td>7</td><td class="nome">Lelly Jlebovich</td><td class="fone">+55 41 8455-6283</td><td>09/06</td><td>09/06</td><td><span class="badge pago">Enviado</span><span class="when">09/06 &middot; 14:02</span></td></tr>
+      <tr><td>8</td><td class="nome">Vin&iacute;cius R. Magnabosco</td><td class="fone">+55 41 9818-6764</td><td>09/06</td><td>09/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr class="pago"><td>9</td><td class="nome">(nome n&atilde;o registrado no CRM)</td><td class="fone">+55 41 9926-8617</td><td>09/06</td><td>09/06</td><td><span class="badge pago">Enviado</span><span class="when">09/06 &middot; 17:27</span></td></tr>
+      <tr><td>10</td><td class="nome">Diego Carvalho</td><td class="fone">+55 41 9848-6008</td><td>10/06</td><td>10/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr><td>11</td><td class="nome">Kleber Tedeski</td><td class="fone">+55 41 9507-8873</td><td>10/06</td><td>10/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr class="pago"><td>12</td><td class="nome">Rafael Lima</td><td class="fone">+55 41 9113-6212</td><td>10/06</td><td>10/06</td><td><span class="badge pago">Enviado</span><span class="when">10/06 &middot; 14:08</span></td></tr>
+      <tr class="pago"><td>13</td><td class="nome">Jessica Napoli</td><td class="fone">+55 31 9349-4369</td><td>10/06</td><td>10/06</td><td><span class="badge pago">Enviado</span><span class="when">10/06 &middot; 16:06</span></td></tr>
+      <tr class="pago"><td>14</td><td class="nome">Thiago Machado</td><td class="fone">+55 41 9512-1955</td><td>10/06</td><td>10/06</td><td><span class="badge pago">Enviado</span><span class="when">10/06 &middot; 16:38</span></td></tr>
+      <tr><td>15</td><td class="nome">Kathlyn Correia</td><td class="fone">+55 41 9791-1376</td><td>10/06</td><td>11/06</td><td><span class="badge pend">Pendente</span></td></tr>
+      <tr class="pago"><td>16</td><td class="nome">Gustavo Garcia</td><td class="fone">+55 41 8823-5824</td><td>11/06</td><td>11/06</td><td><span class="badge pago">Enviado</span><span class="when">11/06 &middot; 19:17 &middot; PIX R$ 682</span></td></tr>
+      <tr class="pago"><td>17</td><td class="nome">J&uacute;lio Eduvirgem</td><td class="fone">+55 41 8410-2680</td><td>11/06</td><td>11/06</td><td><span class="badge pago">Enviado</span><span class="when">11/06 &middot; 17:22</span></td></tr>
+      <tr class="pago"><td>18</td><td class="nome">Patric Saldanha</td><td class="fone">+55 41 9523-0532</td><td>12/06</td><td>12/06</td><td><span class="badge pago">Enviado</span><span class="when">12/06 &middot; 01:30</span></td></tr>
+    </tbody>
+  </table>
+  <p class="nota">
+    <strong>Como verificamos:</strong> cada clique no bot&atilde;o de WhatsApp do site grava hor&aacute;rio exato e uma frase &uacute;nica
+    pr&eacute;-preenchida. A primeira mensagem de cada lead no WhatsApp foi cruzada com o clique correspondente &mdash; em todos os
+    18 casos a mesma frase chegou segundos depois do clique, confirmando a origem. &ldquo;Reserva confirmada&rdquo; = data da
+    mensagem de confirma&ccedil;&atilde;o no CRM. &ldquo;Comprovante&rdquo; = data/hora em que o cliente enviou o comprovante de
+    pagamento na conversa. Os marcados como pendentes podem ter pago por outro canal (cart&atilde;o via link ou outro n&uacute;mero)
+    &mdash; recomendada confer&ecirc;ncia manual no CRM.
+  </p>
+</div>
+
+<footer>
+  <div class="brand">Smarten.digital</div>
+  <div>Relat&oacute;rio gerado em 12/06/2026 &middot; Fontes: tracking pr&oacute;prio (Cloudflare) + CRM Dionisio</div>
+</footer>
+
+</div><!-- close doc-content -->
+</body>
+</html>
